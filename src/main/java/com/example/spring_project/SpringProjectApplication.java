@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -42,5 +45,11 @@ public class SpringProjectApplication implements CommandLineRunner {
         long end = Timestamp.valueOf("2024-3-11 00:00:00").getTime();
         long diff = end - offset + 1;
         return new Date(offset + (long)(Math.random() * diff));
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder (){
+        return new BCryptPasswordEncoder();
+
     }
 }
