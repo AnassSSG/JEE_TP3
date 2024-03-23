@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template.html"
+>
 <head>
     <meta charset="UTF-8">
     <title>Patients</title>
@@ -50,32 +53,8 @@
         }
     </style>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#"  th:text="${#authentication.name}"> </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/patients}">Home</a>
-            </li>
-            <li  th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="nav-item">
-                <a class="nav-link" th:href="@{/formPatient}">Nouveau</a>
-            </li>
-            <li>
-                <form method="post" th:action="@{/logout}">
-                    <button class="nav-link" type="submit" >Logout</button>
-                </form>
-            </li>
-        </ul>
-    </div>
-</nav>
 <body>
+<div layout:fragment="content">
 <div class="container">
     <a th:href="@{'/patients?page=0'}">
         <h1 class="mt-4 mb-4">Patients</h1>
@@ -129,6 +108,7 @@
             </li>
         </ul>
     </nav>
+</div>
 </div>
 </body>
 </html>
